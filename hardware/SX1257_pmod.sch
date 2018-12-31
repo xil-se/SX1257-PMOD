@@ -1,4 +1,300 @@
-EESchema Schematic File Version 2
-EELAYER 25 0
+EESchema Schematic File Version 4
+EELAYER 26 0
 EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Wire Wire Line
+	5450 3250 5450 3150
+Wire Wire Line
+	5550 3250 5550 3150
+Wire Wire Line
+	5650 3250 5650 3150
+Wire Wire Line
+	5750 3250 5750 3150
+Wire Wire Line
+	5850 3250 5850 3150
+Wire Wire Line
+	5950 3250 5950 3150
+Wire Wire Line
+	5450 3250 5550 3250
+Connection ~ 5550 3250
+Wire Wire Line
+	5550 3250 5650 3250
+Connection ~ 5650 3250
+Wire Wire Line
+	5650 3250 5750 3250
+Connection ~ 5750 3250
+Wire Wire Line
+	5750 3250 5850 3250
+Connection ~ 5850 3250
+Wire Wire Line
+	5850 3250 5950 3250
+$Comp
+L power:GND #PWR0101
+U 1 1 5C2A85FC
+P 5450 3350
+F 0 "#PWR0101" H 5450 3100 50  0001 C CNN
+F 1 "GND" H 5455 3177 50  0000 C CNN
+F 2 "" H 5450 3350 50  0001 C CNN
+F 3 "" H 5450 3350 50  0001 C CNN
+	1    5450 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5450 3350 5450 3250
+Connection ~ 5450 3250
+$Comp
+L SX1257:SX1257 U1
+U 1 1 5C2A87F4
+P 5800 2200
+F 0 "U1" H 6300 1200 50  0000 C CNN
+F 1 "SX1257" H 6400 1300 50  0000 C CNN
+F 2 "Package_DFN_QFN:QFN-32-1EP_5x5mm_P0.5mm_EP3.1x3.1mm_ThermalVias" H 6350 2950 50  0001 C CNN
+F 3 "" H 6350 2950 50  0001 C CNN
+	1    5800 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0102
+U 1 1 5C2A8C5E
+P 1650 900
+F 0 "#PWR0102" H 1650 750 50  0001 C CNN
+F 1 "+3V3" V 1650 1000 50  0000 L CNN
+F 2 "" H 1650 900 50  0001 C CNN
+F 3 "" H 1650 900 50  0001 C CNN
+	1    1650 900 
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR0103
+U 1 1 5C2A8C96
+P 950 900
+F 0 "#PWR0103" H 950 750 50  0001 C CNN
+F 1 "+3V3" V 950 1000 50  0000 L CNN
+F 2 "" H 950 900 50  0001 C CNN
+F 3 "" H 950 900 50  0001 C CNN
+	1    950  900 
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	950  900  1050 900 
+Wire Wire Line
+	1550 900  1650 900 
+$Comp
+L power:GND #PWR0104
+U 1 1 5C2A8E19
+P 1650 1000
+F 0 "#PWR0104" H 1650 750 50  0001 C CNN
+F 1 "GND" V 1650 900 50  0000 R CNN
+F 2 "" H 1650 1000 50  0001 C CNN
+F 3 "" H 1650 1000 50  0001 C CNN
+	1    1650 1000
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	1650 1000 1550 1000
+$Comp
+L power:GND #PWR0105
+U 1 1 5C2A8F09
+P 950 1000
+F 0 "#PWR0105" H 950 750 50  0001 C CNN
+F 1 "GND" V 950 900 50  0000 R CNN
+F 2 "" H 950 1000 50  0001 C CNN
+F 3 "" H 950 1000 50  0001 C CNN
+	1    950  1000
+	0    1    -1   0   
+$EndComp
+Wire Wire Line
+	950  1000 1050 1000
+Text Label 1750 1400 0    50   ~ 0
+PMOD_5
+Wire Wire Line
+	1550 1400 1750 1400
+Text Label 1750 1300 0    50   ~ 0
+PMOD_6
+Wire Wire Line
+	1550 1300 1750 1300
+Text Label 1750 1200 0    50   ~ 0
+PMOD_7
+Wire Wire Line
+	1550 1200 1750 1200
+Text Label 1750 1100 0    50   ~ 0
+PMOD_8
+Wire Wire Line
+	1550 1100 1750 1100
+Text Label 850  1400 2    50   ~ 0
+PMOD_1
+Wire Wire Line
+	1050 1400 850  1400
+Text Label 850  1300 2    50   ~ 0
+PMOD_2
+Wire Wire Line
+	1050 1300 850  1300
+Text Label 850  1200 2    50   ~ 0
+PMOD_3
+Wire Wire Line
+	1050 1200 850  1200
+Text Label 850  1100 2    50   ~ 0
+PMOD_4
+Wire Wire Line
+	1050 1100 850  1100
+$Comp
+L Connector_Generic:Conn_02x06_Odd_Even J1
+U 1 1 5C2AB4BF
+P 1250 1100
+F 0 "J1" H 1300 1517 50  0000 C CNN
+F 1 "Conn_02x06_Odd_Even" H 1300 1426 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Horizontal" H 1250 1100 50  0001 C CNN
+F 3 "~" H 1250 1100 50  0001 C CNN
+	1    1250 1100
+	1    0    0    -1  
+$EndComp
+Text Label 6850 1850 0    50   ~ 0
+PMOD_1
+Wire Wire Line
+	6650 1850 6850 1850
+Text Label 6850 1750 0    50   ~ 0
+PMOD_2
+Wire Wire Line
+	6650 1750 6850 1750
+Text Label 6850 1650 0    50   ~ 0
+PMOD_3
+Wire Wire Line
+	6650 1650 6850 1650
+Text Label 6850 1550 0    50   ~ 0
+PMOD_4
+Wire Wire Line
+	6650 1550 6850 1550
+Text Label 4550 2350 2    50   ~ 0
+PMOD_5
+Wire Wire Line
+	4750 2350 4550 2350
+Text Label 4550 2450 2    50   ~ 0
+PMOD_6
+Wire Wire Line
+	4750 2450 4550 2450
+Text Label 4550 2650 2    50   ~ 0
+PMOD_7
+Wire Wire Line
+	4750 2650 4550 2650
+Text Label 4550 2750 2    50   ~ 0
+PMOD_8
+Wire Wire Line
+	4750 2750 4550 2750
+Wire Wire Line
+	4750 2050 4550 2050
+Wire Wire Line
+	4750 2150 4550 2150
+Text Label 4550 2050 2    50   ~ 0
+CLK_OUT
+Text Label 4550 2150 2    50   ~ 0
+CLK_IN
+Text Label 1650 2100 0    50   ~ 0
+CLK_IN
+$Comp
+L Device:R R1
+U 1 1 5C2B5713
+P 1300 2100
+F 0 "R1" V 1250 2250 50  0000 C CNN
+F 1 "0R" V 1300 2100 50  0000 C CNN
+F 2 "" V 1230 2100 50  0001 C CNN
+F 3 "~" H 1300 2100 50  0001 C CNN
+F 4 "DNP" V 1300 2100 50  0000 C CNB "Placement"
+	1    1300 2100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1650 2100 1450 2100
+Text Label 950  2300 2    50   ~ 0
+PMOD_4
+$Comp
+L Device:R R2
+U 1 1 5C2B7109
+P 1300 2300
+F 0 "R2" V 1250 2450 50  0000 C CNN
+F 1 "0R" V 1300 2300 50  0000 C CNN
+F 2 "" V 1230 2300 50  0001 C CNN
+F 3 "~" H 1300 2300 50  0001 C CNN
+	1    1300 2300
+	0    1    1    0   
+$EndComp
+Text Label 1650 2300 0    50   ~ 0
+CLK_IN
+Text Label 950  2100 2    50   ~ 0
+CLK_OUT
+Wire Wire Line
+	1150 2100 950  2100
+Wire Wire Line
+	950  2300 1150 2300
+Wire Wire Line
+	1450 2300 1650 2300
+Text Notes 650  1950 0    50   ~ 0
+Only place for debugging purposes
+Wire Wire Line
+	4750 1750 4550 1750
+Wire Wire Line
+	4750 1850 4550 1850
+Text Label 4550 1750 2    50   ~ 0
+XTA
+Text Label 4550 1850 2    50   ~ 0
+XTB
+Text Label 2850 1850 1    50   ~ 0
+XTA
+Text Label 2850 2350 3    50   ~ 0
+XTB
+$Comp
+L Device:Crystal_GND24 Y1
+U 1 1 5C2BAF22
+P 2850 2100
+F 0 "Y1" V 3000 2200 50  0000 L CNN
+F 1 "32/36MHz ?ppm" V 2700 2150 50  0000 L CNN
+F 2 "Crystal:Crystal_SMD_5032-4Pin_5.0x3.2mm" H 2850 2100 50  0001 C CNN
+F 3 "~" H 2850 2100 50  0001 C CNN
+	1    2850 2100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2850 1850 2850 1950
+Wire Wire Line
+	2850 2350 2850 2250
+Wire Wire Line
+	2650 2100 2550 2100
+Wire Wire Line
+	2550 2100 2550 2200
+$Comp
+L power:GND #PWR0106
+U 1 1 5C2BE4C7
+P 2550 2200
+F 0 "#PWR0106" H 2550 1950 50  0001 C CNN
+F 1 "GND" H 2555 2027 50  0000 C CNN
+F 2 "" H 2550 2200 50  0001 C CNN
+F 3 "" H 2550 2200 50  0001 C CNN
+	1    2550 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3050 2100 3150 2100
+Wire Wire Line
+	3150 2100 3150 2200
+$Comp
+L power:GND #PWR0107
+U 1 1 5C2BF27E
+P 3150 2200
+F 0 "#PWR0107" H 3150 1950 50  0001 C CNN
+F 1 "GND" H 3155 2027 50  0000 C CNN
+F 2 "" H 3150 2200 50  0001 C CNN
+F 3 "" H 3150 2200 50  0001 C CNN
+	1    3150 2200
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
