@@ -2,7 +2,7 @@ EESchema Schematic File Version 4
 LIBS:SX1257_pmod-cache
 EELAYER 26 0
 EELAYER END
-$Descr A4 11693 8268
+$Descr A3 16535 11693
 encoding utf-8
 Sheet 1 1
 Title "SX1257 PMOD"
@@ -1087,7 +1087,7 @@ Connection ~ 1650 3250
 Wire Wire Line
 	1650 3250 1800 3250
 Text Notes 650  2500 0    50   ~ 0
-Clock is shared between CLK_IN and SPI_SCK.
+Populate R1 or R2 to select clock.
 $Comp
 L Connector:TestPoint TP6
 U 1 1 5C3476A4
@@ -1118,7 +1118,7 @@ Wire Wire Line
 	6200 2200 6750 2200
 Text Label 8850 1600 0    50   ~ 0
 SPI_SCK
-Text Label 1700 2150 0    50   ~ 0
+Text Label 12800 1550 0    50   ~ 0
 SPI_SCK
 $Comp
 L Device:R R1
@@ -1146,11 +1146,11 @@ Text Label 8850 1800 0    50   ~ 0
 SPI_MOSI
 Text Label 8850 1900 0    50   ~ 0
 SPI_NSS
-Text Label 1700 2050 0    50   ~ 0
+Text Label 12800 1450 0    50   ~ 0
 SPI_MISO
-Text Label 1700 1950 0    50   ~ 0
+Text Label 12800 1350 0    50   ~ 0
 SPI_MOSI
-Text Label 1700 1850 0    50   ~ 0
+Text Label 12800 1250 0    50   ~ 0
 SPI_NSS
 Wire Wire Line
 	1000 2050 1700 2050
@@ -1158,4 +1158,11 @@ Wire Wire Line
 	1000 1950 1700 1950
 Wire Wire Line
 	1000 1850 1700 1850
+Text Label 1700 2150 0    50   ~ 0
+CLK_OUT
+Text Label 1700 1850 0    50   ~ 0
+I2C_CLK
+Text Label 1700 1950 0    50   ~ 0
+I2C_DATA
+NoConn ~ 1700 2050
 $EndSCHEMATC
