@@ -136,23 +136,8 @@ Text Label 6550 2200 2    50   ~ 0
 CLK_IN
 Text Label 1000 2150 2    50   ~ 0
 PMOD_4
-$Comp
-L Device:R R1
-U 1 1 5C2B7109
-P 1350 2150
-F 0 "R1" V 1400 2300 50  0000 C CNN
-F 1 "0R" V 1350 2150 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 1280 2150 50  0001 C CNN
-F 3 "~" H 1350 2150 50  0001 C CNN
-	1    1350 2150
-	0    1    1    0   
-$EndComp
-Text Label 1700 2350 0    50   ~ 0
+Text Label 1900 2050 0    50   ~ 0
 CLK_IN
-Wire Wire Line
-	1000 2150 1100 2150
-Wire Wire Line
-	1500 2150 1700 2150
 Wire Wire Line
 	6750 1800 6550 1800
 Wire Wire Line
@@ -289,52 +274,50 @@ Text Label 1000 1050 2    50   ~ 0
 PMOD_3V3
 Wire Wire Line
 	1000 1050 1200 1050
-Text Label 1000 3050 2    50   ~ 0
+Text Label 1000 2550 2    50   ~ 0
 PMOD_3V3
 $Comp
 L Device:Ferrite_Bead FB1
 U 1 1 5C30A1D4
-P 1350 3050
-F 0 "FB1" V 1450 3150 50  0000 C CNN
-F 1 "Ferrite_Bead" V 1150 3000 50  0001 C CNN
-F 2 "Inductor_SMD:L_0603_1608Metric" V 1280 3050 50  0001 C CNN
-F 3 "~" H 1350 3050 50  0001 C CNN
-	1    1350 3050
+P 1450 2550
+F 0 "FB1" V 1550 2650 50  0000 C CNN
+F 1 "Ferrite_Bead" V 1250 2500 50  0001 C CNN
+F 2 "Inductor_SMD:L_0603_1608Metric" V 1380 2550 50  0001 C CNN
+F 3 "~" H 1450 2550 50  0001 C CNN
+	1    1450 2550
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	1000 3050 1200 3050
+	1000 2550 1300 2550
 $Comp
 L power:+3V3 #PWR03
 U 1 1 5C30B964
-P 1800 3000
-F 0 "#PWR03" H 1800 2850 50  0001 C CNN
-F 1 "+3V3" H 1700 3150 50  0000 L CNN
-F 2 "" H 1800 3000 50  0001 C CNN
-F 3 "" H 1800 3000 50  0001 C CNN
-	1    1800 3000
+P 2050 2500
+F 0 "#PWR03" H 2050 2350 50  0001 C CNN
+F 1 "+3V3" H 1950 2650 50  0000 L CNN
+F 2 "" H 2050 2500 50  0001 C CNN
+F 3 "" H 2050 2500 50  0001 C CNN
+	1    2050 2500
 	-1   0    0    -1  
 $EndComp
 $Comp
 L power:PWR_FLAG #FLG01
 U 1 1 5C3103FC
-P 1650 3000
-F 0 "#FLG01" H 1650 3075 50  0001 C CNN
-F 1 "PWR_FLAG" H 1650 3174 50  0001 C CNN
-F 2 "" H 1650 3000 50  0001 C CNN
-F 3 "~" H 1650 3000 50  0001 C CNN
-	1    1650 3000
+P 1900 2500
+F 0 "#FLG01" H 1900 2575 50  0001 C CNN
+F 1 "PWR_FLAG" H 1900 2674 50  0001 C CNN
+F 2 "" H 1900 2500 50  0001 C CNN
+F 3 "~" H 1900 2500 50  0001 C CNN
+	1    1900 2500
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1650 3000 1650 3050
-Connection ~ 1650 3050
+	1900 2500 1900 2550
+Connection ~ 1900 2550
 Wire Wire Line
-	1650 3050 1500 3050
+	2050 2550 2050 2500
 Wire Wire Line
-	1800 3050 1800 3000
-Wire Wire Line
-	1650 3050 1800 3050
+	1900 2550 2050 2550
 Text Label 8850 2100 0    50   ~ 0
 DIO0
 Text Label 8850 2200 0    50   ~ 0
@@ -344,10 +327,10 @@ DIO2
 Text Label 8850 2400 0    50   ~ 0
 DIO3
 $Comp
-L Connector:TestPoint TP10
+L Connector:TestPoint TP5
 U 1 1 5C32BD15
 P 9200 2300
-F 0 "TP10" V 9200 2500 50  0000 L CNN
+F 0 "TP5" V 9200 2500 50  0000 L CNN
 F 1 "TestPoint" V 9200 2750 50  0001 L CNN
 F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9400 2300 50  0001 C CNN
 F 3 "~" H 9400 2300 50  0001 C CNN
@@ -355,10 +338,10 @@ F 3 "~" H 9400 2300 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Connector:TestPoint TP11
+L Connector:TestPoint TP6
 U 1 1 5C32DD47
 P 9200 2400
-F 0 "TP11" V 9200 2600 50  0000 L CNN
+F 0 "TP6" V 9200 2600 50  0000 L CNN
 F 1 "TestPoint" V 9200 2850 50  0001 L CNN
 F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9400 2400 50  0001 C CNN
 F 3 "~" H 9400 2400 50  0001 C CNN
@@ -535,27 +518,14 @@ $EndComp
 $Comp
 L power:PWR_FLAG #FLG02
 U 1 1 5C3953E6
-P 1650 3350
-F 0 "#FLG02" H 1650 3425 50  0001 C CNN
-F 1 "PWR_FLAG" H 1650 3524 50  0001 C CNN
-F 2 "" H 1650 3350 50  0001 C CNN
-F 3 "~" H 1650 3350 50  0001 C CNN
-	1    1650 3350
+P 1900 2850
+F 0 "#FLG02" H 1900 2925 50  0001 C CNN
+F 1 "PWR_FLAG" H 1900 3024 50  0001 C CNN
+F 2 "" H 1900 2850 50  0001 C CNN
+F 3 "~" H 1900 2850 50  0001 C CNN
+	1    1900 2850
 	-1   0    0    1   
 $EndComp
-$Comp
-L Connector:TestPoint TP1
-U 1 1 5C39E2AB
-P 6200 1600
-F 0 "TP1" V 6200 1800 50  0000 L CNN
-F 1 "TestPoint" V 6200 2050 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 6400 1600 50  0001 C CNN
-F 3 "~" H 6400 1600 50  0001 C CNN
-	1    6200 1600
-	0    -1   -1   0   
-$EndComp
-Text Label 6550 1600 2    50   ~ 0
-RESET
 Wire Wire Line
 	8650 2600 8850 2600
 Text Label 8850 2600 0    50   ~ 0
@@ -1010,82 +980,36 @@ Text Label 1900 1150 0    50   ~ 0
 PMOD_GND
 Wire Wire Line
 	1700 1150 1900 1150
-Text Label 1000 3250 2    50   ~ 0
+Text Label 1000 2750 2    50   ~ 0
 PMOD_GND
 $Comp
 L power:GND #PWR04
 U 1 1 5C3092FD
-P 1800 3350
-F 0 "#PWR04" H 1800 3100 50  0001 C CNN
-F 1 "GND" H 1805 3177 50  0000 C CNN
-F 2 "" H 1800 3350 50  0001 C CNN
-F 3 "" H 1800 3350 50  0001 C CNN
-	1    1800 3350
+P 2050 2850
+F 0 "#PWR04" H 2050 2600 50  0001 C CNN
+F 1 "GND" H 2055 2677 50  0000 C CNN
+F 2 "" H 2050 2850 50  0001 C CNN
+F 3 "" H 2050 2850 50  0001 C CNN
+	1    2050 2850
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1000 3250 1650 3250
+	2050 2750 2050 2850
 Wire Wire Line
-	1800 3250 1800 3350
+	1900 2850 1900 2750
+Connection ~ 1900 2750
 Wire Wire Line
-	1650 3350 1650 3250
-Connection ~ 1650 3250
+	1900 2750 2050 2750
 Wire Wire Line
-	1650 3250 1800 3250
-Text Notes 650  2500 0    50   ~ 0
-Populate R1 or R2 to select clock mode.
-$Comp
-L Connector:TestPoint TP2
-U 1 1 5C3476A4
-P 6200 2100
-F 0 "TP2" V 6200 2300 50  0000 L CNN
-F 1 "TestPoint" V 6200 2550 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 6400 2100 50  0001 C CNN
-F 3 "~" H 6400 2100 50  0001 C CNN
-	1    6200 2100
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Connector:TestPoint TP3
-U 1 1 5C34771A
-P 6200 2200
-F 0 "TP3" V 6200 2400 50  0000 L CNN
-F 1 "TestPoint" V 6200 2650 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 6400 2200 50  0001 C CNN
-F 3 "~" H 6400 2200 50  0001 C CNN
-	1    6200 2200
-	0    -1   -1   0   
-$EndComp
+	6550 1600 6750 1600
 Wire Wire Line
-	6200 1600 6750 1600
+	6550 2100 6750 2100
 Wire Wire Line
-	6200 2100 6750 2100
-Wire Wire Line
-	6200 2200 6750 2200
+	6550 2200 6750 2200
 Text Label 8850 1600 0    50   ~ 0
 SPI_SCK
 Text Label 13250 2200 0    50   ~ 0
 SPI_SCK
-$Comp
-L Device:R R2
-U 1 1 5C36ECA7
-P 1350 2350
-F 0 "R2" V 1400 2500 50  0000 C CNN
-F 1 "0R" V 1350 2350 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 1280 2350 50  0001 C CNN
-F 3 "~" H 1350 2350 50  0001 C CNN
-	1    1350 2350
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	1700 2350 1500 2350
-Wire Wire Line
-	1200 2350 1100 2350
-Wire Wire Line
-	1100 2350 1100 2150
-Connection ~ 1100 2150
-Wire Wire Line
-	1100 2150 1200 2150
 Text Label 8850 1700 0    50   ~ 0
 SPI_MISO
 Text Label 8850 1800 0    50   ~ 0
@@ -1098,17 +1022,11 @@ Text Label 13250 2100 0    50   ~ 0
 SPI_MOSI
 Text Label 13250 1500 0    50   ~ 0
 SPI_NSS
-Wire Wire Line
-	1000 2050 1700 2050
-Wire Wire Line
-	1000 1950 1700 1950
-Wire Wire Line
-	1000 1850 1700 1850
-Text Label 1700 2150 0    50   ~ 0
+Text Label 1900 2150 0    50   ~ 0
 CLK_OUT
-Text Label 1700 1850 0    50   ~ 0
+Text Label 1900 1850 0    50   ~ 0
 I2C_CLK
-Text Label 1700 1950 0    50   ~ 0
+Text Label 1900 1950 0    50   ~ 0
 I2C_SDA
 $Comp
 L SC18IS602B:SC18IS602B U2
@@ -1122,10 +1040,10 @@ F 3 "" H 12800 500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:TestPoint TP4
+L Connector:TestPoint TP1
 U 1 1 5C309F67
 P 9200 1600
-F 0 "TP4" V 9200 1800 50  0000 L CNN
+F 0 "TP1" V 9200 1800 50  0000 L CNN
 F 1 "TestPoint" V 9200 2050 50  0001 L CNN
 F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9400 1600 50  0001 C CNN
 F 3 "~" H 9400 1600 50  0001 C CNN
@@ -1135,10 +1053,10 @@ $EndComp
 Wire Wire Line
 	8650 1600 9200 1600
 $Comp
-L Connector:TestPoint TP5
+L Connector:TestPoint TP2
 U 1 1 5C3239F0
 P 9200 1700
-F 0 "TP5" V 9200 1900 50  0000 L CNN
+F 0 "TP2" V 9200 1900 50  0000 L CNN
 F 1 "TestPoint" V 9200 2150 50  0001 L CNN
 F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9400 1700 50  0001 C CNN
 F 3 "~" H 9400 1700 50  0001 C CNN
@@ -1146,10 +1064,10 @@ F 3 "~" H 9400 1700 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Connector:TestPoint TP6
+L Connector:TestPoint TP3
 U 1 1 5C323A5C
 P 9200 1800
-F 0 "TP6" V 9200 2000 50  0000 L CNN
+F 0 "TP3" V 9200 2000 50  0000 L CNN
 F 1 "TestPoint" V 9200 2250 50  0001 L CNN
 F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9400 1800 50  0001 C CNN
 F 3 "~" H 9400 1800 50  0001 C CNN
@@ -1157,10 +1075,10 @@ F 3 "~" H 9400 1800 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Connector:TestPoint TP7
+L Connector:TestPoint TP4
 U 1 1 5C323ACA
 P 9200 1900
-F 0 "TP7" V 9200 2100 50  0000 L CNN
+F 0 "TP4" V 9200 2100 50  0000 L CNN
 F 1 "TestPoint" V 9200 2350 50  0001 L CNN
 F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9400 1900 50  0001 C CNN
 F 3 "~" H 9400 1900 50  0001 C CNN
@@ -1188,10 +1106,10 @@ Wire Wire Line
 Wire Wire Line
 	13050 2200 13250 2200
 $Comp
-L Connector:TestPoint TP12
+L Connector:TestPoint TP7
 U 1 1 5C34614B
 P 13600 1600
-F 0 "TP12" V 13600 1800 50  0000 L CNN
+F 0 "TP7" V 13600 1800 50  0000 L CNN
 F 1 "TestPoint" V 13600 2050 50  0001 L CNN
 F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 13800 1600 50  0001 C CNN
 F 3 "~" H 13800 1600 50  0001 C CNN
@@ -1199,10 +1117,10 @@ F 3 "~" H 13800 1600 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Connector:TestPoint TP13
+L Connector:TestPoint TP8
 U 1 1 5C346277
 P 13600 1700
-F 0 "TP13" V 13600 1900 50  0000 L CNN
+F 0 "TP8" V 13600 1900 50  0000 L CNN
 F 1 "TestPoint" V 13600 2150 50  0001 L CNN
 F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 13800 1700 50  0001 C CNN
 F 3 "~" H 13800 1700 50  0001 C CNN
@@ -1210,10 +1128,10 @@ F 3 "~" H 13800 1700 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Connector:TestPoint TP14
+L Connector:TestPoint TP9
 U 1 1 5C3462EB
 P 13600 1800
-F 0 "TP14" V 13600 2000 50  0000 L CNN
+F 0 "TP9" V 13600 2000 50  0000 L CNN
 F 1 "TestPoint" V 13600 2250 50  0001 L CNN
 F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 13800 1800 50  0001 C CNN
 F 3 "~" H 13800 1800 50  0001 C CNN
@@ -1348,10 +1266,6 @@ Wire Wire Line
 	11550 1500 11750 1500
 Text Label 11550 1900 2    50   ~ 0
 I2C_INT
-Text Label 1700 2050 0    50   ~ 0
-I2C_INT
-Text Notes 2000 2050 0    50   ~ 0
-This may not be needed.
 Text Notes 550  700  0    50   ~ 0
 Icebreaker compatibility:\nPMOD_4 connects to P1A10 which is a global/clock input pin (IOB_3B_G6)
 Text Label 3550 2350 0    50   ~ 0
@@ -1468,8 +1382,6 @@ Text Notes 3100 2350 0    50   ~ 0
 pll_lock_rx
 Text Notes 3100 2550 0    50   ~ 0
 pll_lock_tx
-Text Label 13250 1600 0    50   ~ 0
-GPIO1
 Text Label 13250 1700 0    50   ~ 0
 GPIO2
 Text Label 13250 1800 0    50   ~ 0
@@ -1477,9 +1389,25 @@ GPIO3
 Wire Wire Line
 	13050 1600 13600 1600
 Wire Wire Line
-	13050 1500 13250 1500
-Wire Wire Line
 	13050 1800 13600 1800
 Wire Wire Line
 	13050 1700 13600 1700
+Text Label 6550 1600 2    50   ~ 0
+SX_RESET
+Text Label 13250 1600 0    50   ~ 0
+SX_RESET
+Wire Wire Line
+	1000 1850 1900 1850
+Wire Wire Line
+	1000 1950 1900 1950
+Wire Wire Line
+	1000 2050 1900 2050
+Wire Wire Line
+	1000 2150 1900 2150
+Wire Wire Line
+	1600 2550 1900 2550
+Wire Wire Line
+	1000 2750 1900 2750
+Wire Wire Line
+	13050 1500 13250 1500
 $EndSCHEMATC
