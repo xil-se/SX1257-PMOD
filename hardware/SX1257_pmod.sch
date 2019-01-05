@@ -1353,7 +1353,7 @@ I2C_INT
 Text Notes 2000 2050 0    50   ~ 0
 This may not be needed.
 Text Notes 550  700  0    50   ~ 0
-Icebreaker compatibility:\nPMOD_4 connects to P1A10 which is a clok sense pin (IOB_3B_G6)
+Icebreaker compatibility:\nPMOD_4 connects to P1A10 which is a global/clock input pin (IOB_3B_G6)
 Text Label 3550 2350 0    50   ~ 0
 DIO0
 Text Label 3550 2550 0    50   ~ 0
