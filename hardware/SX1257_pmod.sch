@@ -155,9 +155,12 @@ L Device:Crystal_GND24 Y1
 U 1 1 5C2BAF22
 P 7450 4500
 F 0 "Y1" H 7500 4700 50  0000 L CNN
-F 1 "32/36MHz ?ppm" H 7500 4800 50  0000 L CNN
-F 2 "Crystal:Crystal_SMD_5032-4Pin_5.0x3.2mm" H 7450 4500 50  0001 C CNN
-F 3 "~" H 7450 4500 50  0001 C CNN
+F 1 "36MHz 10ppm" H 7500 4800 50  0000 L CNN
+F 2 "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm" H 7450 4500 50  0001 C CNN
+F 3 "https://www.mouser.se/datasheet/2/3/abm8-16794.pdf" H 7450 4500 50  0001 C CNN
+F 4 "815-ABM8-36-10-1-U-T" H 7450 4500 50  0001 C CNN "Mouser"
+F 5 "https://www.mouser.se/ProductDetail/ABRACON/ABM8-36000MHZ-10-1-U-T?qs=sGAEpiMZZMsBj6bBr9Q9acVJ3l36SOAPXI0xqgGUahk%3d" H 7450 4500 50  0001 C CNN "MouserURL"
+F 6 "ABM8-36.000MHZ-10-1-U-T" H 7450 4500 50  0001 C CNN "MfrNo"
 	1    7450 4500
 	1    0    0    -1  
 $EndComp
@@ -662,7 +665,7 @@ U 1 1 5C3F0EA9
 P 4400 5300
 F 0 "J3" H 4499 5276 50  0000 L CNN
 F 1 "SMA_F_TX" H 4499 5185 50  0000 L CNN
-F 2 "Connector_Coaxial:SMA_Amphenol_132134-10_Vertical" H 4400 5300 50  0001 C CNN
+F 2 "extra:CON-SMA-EDGE" H 4400 5300 50  0001 C CNN
 F 3 " ~" H 4400 5300 50  0001 C CNN
 	1    4400 5300
 	1    0    0    -1  
@@ -726,8 +729,6 @@ F 3 "" H 1450 6200 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1450 6200 1450 6100
-Wire Wire Line
-	3450 5300 3550 5300
 $Comp
 L Device:C C5
 U 1 1 5C3FF2E6
@@ -858,56 +859,12 @@ Wire Notes Line
 Text Notes 9700 2300 0    50   ~ 0
 Registers are available\nthrough SPI.
 $Comp
-L Device:Antenna AE2
-U 1 1 5C4B8B38
-P 4400 5100
-F 0 "AE2" V 4354 5230 50  0000 L CNN
-F 1 "PCB_Ant" V 4445 5230 50  0000 L CNN
-F 2 "" H 4400 5100 50  0001 C CNN
-F 3 "~" H 4400 5100 50  0001 C CNN
-	1    4400 5100
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R6
-U 1 1 5C4C50F2
-P 3850 5300
-F 0 "R6" V 3900 5450 50  0000 C CNN
-F 1 "0R" V 3850 5300 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 3780 5300 50  0001 C CNN
-F 3 "~" H 3850 5300 50  0001 C CNN
-	1    3850 5300
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R5
-U 1 1 5C4D0A85
-P 3850 5100
-F 0 "R5" V 3900 5250 50  0000 C CNN
-F 1 "0R" V 3850 5100 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 3780 5100 50  0001 C CNN
-F 3 "~" H 3850 5100 50  0001 C CNN
-	1    3850 5100
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	3700 5100 3550 5100
-Wire Wire Line
-	3550 5100 3550 5300
-Connection ~ 3550 5300
-Wire Wire Line
-	3550 5300 3700 5300
-Wire Wire Line
-	4000 5100 4200 5100
-Wire Wire Line
-	4000 5300 4200 5300
-$Comp
 L Connector:Conn_Coaxial J2
 U 1 1 5C4EEF69
 P 4400 3950
 F 0 "J2" H 4499 3926 50  0000 L CNN
 F 1 "SMA_F_RX" H 4499 3835 50  0000 L CNN
-F 2 "Connector_Coaxial:SMA_Amphenol_132134-10_Vertical" H 4400 3950 50  0001 C CNN
+F 2 "extra:CON-SMA-EDGE" H 4400 3950 50  0001 C CNN
 F 3 " ~" H 4400 3950 50  0001 C CNN
 	1    4400 3950
 	1    0    0    -1  
@@ -925,52 +882,6 @@ F 3 "" H 4400 4450 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4400 4450 4400 4150
-$Comp
-L Device:Antenna AE1
-U 1 1 5C4EEF78
-P 4400 3750
-F 0 "AE1" V 4354 3880 50  0000 L CNN
-F 1 "PCB_Ant" V 4445 3880 50  0000 L CNN
-F 2 "" H 4400 3750 50  0001 C CNN
-F 3 "~" H 4400 3750 50  0001 C CNN
-	1    4400 3750
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R4
-U 1 1 5C4EEF7F
-P 3850 3950
-F 0 "R4" V 3900 4100 50  0000 C CNN
-F 1 "0R" V 3850 3950 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 3780 3950 50  0001 C CNN
-F 3 "~" H 3850 3950 50  0001 C CNN
-	1    3850 3950
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R3
-U 1 1 5C4EEF86
-P 3850 3750
-F 0 "R3" V 3900 3900 50  0000 C CNN
-F 1 "0R" V 3850 3750 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 3780 3750 50  0001 C CNN
-F 3 "~" H 3850 3750 50  0001 C CNN
-	1    3850 3750
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	3700 3750 3550 3750
-Wire Wire Line
-	3550 3750 3550 3950
-Wire Wire Line
-	3550 3950 3700 3950
-Wire Wire Line
-	4000 3750 4200 3750
-Wire Wire Line
-	4000 3950 4200 3950
-Wire Wire Line
-	3550 3950 3250 3950
-Connection ~ 3550 3950
 Connection ~ 3250 3950
 Text Label 1000 1150 2    50   ~ 0
 PMOD_GND
@@ -1410,4 +1321,8 @@ Wire Wire Line
 	1000 2750 1900 2750
 Wire Wire Line
 	13050 1500 13250 1500
+Wire Wire Line
+	3250 3950 4200 3950
+Wire Wire Line
+	3450 5300 4200 5300
 $EndSCHEMATC
