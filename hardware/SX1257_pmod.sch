@@ -6,7 +6,7 @@ $Descr A3 16535 11693
 encoding utf-8
 Sheet 1 1
 Title "SX1257 PMOD"
-Date "2019-01-04"
+Date "2019-01-06"
 Rev "1.0"
 Comp ""
 Comment1 ""
@@ -1325,4 +1325,15 @@ Wire Wire Line
 	3250 3950 4200 3950
 Wire Wire Line
 	3450 5300 4200 5300
+$Comp
+L Graphic:Logo_Open_Hardware_Large LOGO1
+U 1 1 5C32CA22
+P 11250 10600
+F 0 "LOGO1" H 11250 11100 50  0001 C CNN
+F 1 "Logo_Open_Hardware_Large" H 11250 10200 50  0001 C CNN
+F 2 "extra:oshw_logo" H 11250 10600 50  0001 C CNN
+F 3 "~" H 11250 10600 50  0001 C CNN
+	1    11250 10600
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
