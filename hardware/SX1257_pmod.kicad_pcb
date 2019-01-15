@@ -967,7 +967,7 @@
 
   (module extra:CON-SMA-EDGE (layer F.Cu) (tedit 5C32317D) (tstamp 5C56499A)
     (at 130.556 65.913)
-    (path /5C3F0EA9)
+    (path /5C3ECE8D)
     (fp_text reference J3 (at 0 11.303) (layer F.SilkS) hide
       (effects (font (size 1.524 1.524) (thickness 0.3048)))
     )

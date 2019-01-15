@@ -660,17 +660,6 @@ $EndComp
 Wire Wire Line
 	1450 4450 1450 4350
 $Comp
-L Connector:Conn_Coaxial J3
-U 1 1 5C3F0EA9
-P 4400 5300
-F 0 "J3" H 4499 5276 50  0000 L CNN
-F 1 "SMA_F_TX" H 4499 5185 50  0000 L CNN
-F 2 "extra:CON-SMA-EDGE" H 4400 5300 50  0001 C CNN
-F 3 " ~" H 4400 5300 50  0001 C CNN
-	1    4400 5300
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR011
 U 1 1 5C3F0EB0
 P 4400 5800
@@ -865,7 +854,10 @@ P 4400 3950
 F 0 "J2" H 4499 3926 50  0000 L CNN
 F 1 "SMA_F_RX" H 4499 3835 50  0000 L CNN
 F 2 "extra:CON-SMA-EDGE" H 4400 3950 50  0001 C CNN
-F 3 " ~" H 4400 3950 50  0001 C CNN
+F 3 "https://eu.mouser.com/datasheet/2/398/EMPCB.SMAFSTJ.B.HT-19975.pdf" H 4400 3950 50  0001 C CNN
+F 4 "960-EMPCB.SMAFSTJBHT" H 4400 3950 50  0001 C CNN "Mouser"
+F 5 "EMPCB.SMAFSTJ.B.HT" H 4400 3950 50  0001 C CNN "MfrNo"
+F 6 "https://lcsc.com/product-detail/_RFsister-ANKX01-0093_C129604.html" H 4400 3950 50  0001 C CNN "LCSC"
 	1    4400 3950
 	1    0    0    -1  
 $EndComp
@@ -1334,6 +1326,20 @@ F 1 "Logo_Open_Hardware_Large" H 11250 10200 50  0001 C CNN
 F 2 "extra:oshw_logo" H 11250 10600 50  0001 C CNN
 F 3 "~" H 11250 10600 50  0001 C CNN
 	1    11250 10600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_Coaxial J3
+U 1 1 5C3ECE8D
+P 4400 5300
+F 0 "J3" H 4499 5276 50  0000 L CNN
+F 1 "SMA_F_TX" H 4499 5185 50  0000 L CNN
+F 2 "extra:CON-SMA-EDGE" H 4400 5300 50  0001 C CNN
+F 3 "https://eu.mouser.com/datasheet/2/398/EMPCB.SMAFSTJ.B.HT-19975.pdf" H 4400 5300 50  0001 C CNN
+F 4 "960-EMPCB.SMAFSTJBHT" H 4400 5300 50  0001 C CNN "Mouser"
+F 5 "EMPCB.SMAFSTJ.B.HT" H 4400 5300 50  0001 C CNN "MfrNo"
+F 6 "https://lcsc.com/product-detail/_RFsister-ANKX01-0093_C129604.html" H 4400 5300 50  0001 C CNN "LCSC"
+	1    4400 5300
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
