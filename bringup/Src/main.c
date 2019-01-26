@@ -101,6 +101,7 @@ void sx1257_set_tx_freq(int32_t freq)
     SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
       data, sizeof(data), SC18IS602B_config.timeout);
   }
+  // HAL_Delay(1);
   {
     uint8_t data[] = {
       SC18IS602B_SS0,
@@ -110,6 +111,7 @@ void sx1257_set_tx_freq(int32_t freq)
     SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
       data, sizeof(data), SC18IS602B_config.timeout);
   }
+  // HAL_Delay(1);
   {
     uint8_t data[] = {
       SC18IS602B_SS0,
@@ -119,6 +121,7 @@ void sx1257_set_tx_freq(int32_t freq)
     SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
       data, sizeof(data), SC18IS602B_config.timeout);
   }
+  // HAL_Delay(1);
 
 }
 
@@ -174,8 +177,7 @@ int main(void)
 
   // RESET = 1
   SC18IS602B_gpio_write(&SC18IS602B_config, SC18IS602B_SS1);
-  HAL_Delay(10);
-  HAL_Delay(1000); // TODO: remove later
+  HAL_Delay(100);
 
   // Configure SPI
   // MSB is transmitted first
@@ -185,14 +187,16 @@ int main(void)
   SC18IS602B_spi_config(&SC18IS602B_config,
     SC18IS602B_SPI_CONFIG_VALUES(0, 0, 0, SC18IS602B_SPI_FREQ_1843)
   );
+  // HAL_Delay(100);
 
   // RESET = 0
   SC18IS602B_gpio_write(&SC18IS602B_config, 0);
-  HAL_Delay(15); // Datasheet specifies to wait at least 10ms
+  HAL_Delay(100);
 
   // write TX frequency
   // sx1257_set_tx_freq(433000000);
   sx1257_set_tx_freq(915000000);
+  HAL_Delay(100);
 
 
   {
@@ -203,7 +207,7 @@ int main(void)
     };
     SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
       data, sizeof(data), SC18IS602B_config.timeout);
-    HAL_Delay(1);
+    HAL_Delay(100);
   }
 
 
@@ -215,7 +219,7 @@ int main(void)
     };
     SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
       data, sizeof(data), SC18IS602B_config.timeout);
-    HAL_Delay(1);
+    HAL_Delay(100);
   }
 
   // {
@@ -229,7 +233,7 @@ int main(void)
   //   HAL_Delay(1);
   // }
 
-  HAL_Delay(10);
+  // HAL_Delay(100);
 
 
 //////////////////////////////////////////
@@ -242,6 +246,7 @@ int main(void)
   {
 
   /* USER CODE END WHILE */
+
   /* USER CODE BEGIN 3 */
 
     count++;
@@ -267,7 +272,12 @@ int main(void)
       HAL_Delay(1);
     }
 
-    sx1257_set_tx_freq((count & 1) ? 915000000 : 915100000);
+    // sx1257_set_tx_freq((count & 2) ? 868000000 : 868400000);
+    sx1257_set_tx_freq(868000000 + (rand() % 40000000)-20000000);
+
+    // for (uint32_t x = 0; x < 10000; x++) {
+    //   __asm__("nop");
+    // }
 
     // HAL_Delay(1);
 
@@ -339,7 +349,13 @@ static void MX_I2C1_Init(void)
 {
 
   hi2c1.Instance = I2C1;
-  hi2c1.Init.Timing = 0x2000090E;
+
+  // 100 kHz
+  // hi2c1.Init.Timing = 0x2000090E;
+
+  // 400 kHz
+  hi2c1.Init.Timing = 0x0000020B;
+
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
