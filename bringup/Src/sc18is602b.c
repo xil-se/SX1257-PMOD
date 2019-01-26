@@ -8,10 +8,11 @@
 
 #include "sc18is602b.h"
 
-#define SC18IS602B_ADDR_USER      (config->user_address & 0x07)
-#define SC18IS602B_ADDR           (0b0101000 | SC18IS602B_ADDR_USER)
-#define SC18IS602B_ADDR_W         ((SC18IS602B_ADDR << 1) | 0x01)
-#define SC18IS602B_ADDR_R         ((SC18IS602B_ADDR << 1) | 0x00)
+int SC18IS602B_write_bytes(const struct SC18IS602B_config *config, uint8_t *data, uint32_t count)
+{
+    return config->i2c_write(config->handle, SC18IS602B_ADDR_W(config),
+        data, count, config->timeout);
+}
 
 int SC18IS602B_write_cmd(const struct SC18IS602B_config *config,
     uint8_t command)
@@ -20,7 +21,7 @@ int SC18IS602B_write_cmd(const struct SC18IS602B_config *config,
         command,
     };
 
-    return config->i2c_write(config->handle, SC18IS602B_ADDR_W,
+    return config->i2c_write(config->handle, SC18IS602B_ADDR_W(config),
         data, sizeof(data), config->timeout);
 }
 
@@ -32,7 +33,7 @@ int SC18IS602B_write_cmd_val(const struct SC18IS602B_config *config,
         value,
     };
 
-    return config->i2c_write(config->handle, SC18IS602B_ADDR_W,
+    return config->i2c_write(config->handle, SC18IS602B_ADDR_W(config),
         data, sizeof(data), config->timeout);
 }
 
@@ -45,12 +46,12 @@ int SC18IS602B_read_cmd_val(const struct SC18IS602B_config *config,
         value,
     };
 
-    ret = config->i2c_write(config->handle, SC18IS602B_ADDR_W,
+    ret = config->i2c_write(config->handle, SC18IS602B_ADDR_W(config),
         tx, sizeof(tx), config->timeout);
     if (ret != 0)
         return ret;
 
-    ret = config->i2c_read(config->handle, SC18IS602B_ADDR_W,
+    ret = config->i2c_read(config->handle, SC18IS602B_ADDR_W(config),
         read_value, 1, config->timeout);
     return ret;
 }

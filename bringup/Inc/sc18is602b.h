@@ -10,6 +10,11 @@
 
 #include <stdint.h>
 
+#define SC18IS602B_ADDR_USER(_config) ((_config)->user_address & 0x07)
+#define SC18IS602B_ADDR(_config)      (0b0101000 | SC18IS602B_ADDR_USER(_config))
+#define SC18IS602B_ADDR_W(_config)    ((SC18IS602B_ADDR(_config) << 1) | 0x01)
+#define SC18IS602B_ADDR_R(_config)    ((SC18IS602B_ADDR(_config) << 1) | 0x00)
+
 #define SC18IS602B_SPI_CONFIG     (0xF0)
 #define SC18IS602B_INT_CLEAR      (0xF1)
 #define SC18IS602B_IDLE           (0xF2)
@@ -22,6 +27,20 @@
 #define SC18IS602B_SS1            (0x02)
 #define SC18IS602B_SS2            (0x04)
 #define SC18IS602B_SS3            (0x08)
+
+#define SC18IS602B_SPI_ORDER_POS  (5)
+#define SC18IS602B_SPI_CPOL_POS   (3)
+#define SC18IS602B_SPI_CPHA_POS   (2)
+#define SC18IS602B_SPI_FREQ_1843  (0x00)
+#define SC18IS602B_SPI_FREQ_461   (0x01)
+#define SC18IS602B_SPI_FREQ_115   (0x02)
+#define SC18IS602B_SPI_FREQ_58    (0x03)
+#define SC18IS602B_SPI_CONFIG_VALUES(ORDER, CPOL, CPHA, FREQ) ( \
+            (((ORDER) & 1)   << SC18IS602B_SPI_ORDER_POS) | \
+            (((CPOL)  & 1)   << SC18IS602B_SPI_CPOL_POS)  | \
+            (((CPHA)  & 1)   << SC18IS602B_SPI_CPHA_POS)  | \
+            ((FREQ)  & 0b11) << 0                           \
+        )
 
 typedef int (*SC18IS602B_i2c_write)(void *handle, uint16_t address,
     const uint8_t *data, uint32_t count, uint32_t timeout);

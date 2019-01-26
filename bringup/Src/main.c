@@ -129,8 +129,98 @@ int main(void)
 
   int count = 0;
 
-  // Set GPIO as output
-  SC18IS602B_gpio_enable(&SC18IS602B_config, 0x0F);
+
+/////////// SX1257 driver //////////
+
+  // Enable GPIO for SS1 - It's connected to the RESET pin. SS0 is connected to NSS/CS
+  SC18IS602B_gpio_enable(&SC18IS602B_config, SC18IS602B_SS1);
+
+  // RESET = 1
+  SC18IS602B_gpio_write(&SC18IS602B_config, SC18IS602B_SS1);
+  HAL_Delay(10);
+  HAL_Delay(1000); // TODO: remove later
+
+  // Configure SPI
+  // MSB is transmitted first
+  // CLK is low when idle
+  // data is clocked on leading edge
+  // SPI CLK is 1843 kHz
+  SC18IS602B_spi_config(&SC18IS602B_config,
+    SC18IS602B_SPI_CONFIG_VALUES(0, 0, 0, SC18IS602B_SPI_FREQ_1843)
+  );
+
+  // RESET = 0
+  SC18IS602B_gpio_write(&SC18IS602B_config, 0);
+  HAL_Delay(15); // Datasheet specifies to wait at least 10ms
+
+  // write RX frequency
+  {
+    uint8_t data[] = {
+      SC18IS602B_SS0,
+      0x80 | 0x04,
+      0xCB,
+    };
+    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+      data, sizeof(data), SC18IS602B_config.timeout);
+  }
+  {
+    uint8_t data[] = {
+      SC18IS602B_SS0,
+      0x80 | 0x05,
+      0x55,
+    };
+    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+      data, sizeof(data), SC18IS602B_config.timeout);
+  }
+  {
+    uint8_t data[] = {
+      SC18IS602B_SS0,
+      0x80 | 0x06,
+      0x55,
+    };
+    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+      data, sizeof(data), SC18IS602B_config.timeout);
+  }
+
+
+  {
+    uint8_t data[] = {
+      SC18IS602B_SS0,
+      0x80 | 0x00, // operating mode
+      0x08 | 0x04 | 0x02 | 0x01, // rx
+    };
+    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+      data, sizeof(data), SC18IS602B_config.timeout);
+    HAL_Delay(1);
+  }
+
+
+  {
+    uint8_t data[] = {
+      SC18IS602B_SS0,
+      0x80 | 0x10, // clk select
+      0x02 | 0x00, // clkout enabled, use internal for tx
+    };
+    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+      data, sizeof(data), SC18IS602B_config.timeout);
+    HAL_Delay(1);
+  }
+
+  // {
+  //   uint8_t data[] = {
+  //     SC18IS602B_SS0,
+  //     0x0F, // DIO mapping
+  //     0x00, // use default
+  //   };
+  //   SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+  //     data, sizeof(data), SC18IS602B_config.timeout);
+  //   HAL_Delay(1);
+  // }
+
+  HAL_Delay(10);
+
+
+//////////////////////////////////////////
 
   /* USER CODE END 2 */
 
@@ -147,7 +237,6 @@ int main(void)
     
     HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
 
-    SC18IS602B_gpio_write(&SC18IS602B_config, (count & 1) ? 0x0F : 0x00);
 
     // read gpio:
     // uint8_t value = 0xFF;
