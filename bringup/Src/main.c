@@ -85,6 +85,43 @@ struct SC18IS602B_config SC18IS602B_config = {
   .i2c_read = (SC18IS602B_i2c_read) HAL_I2C_Master_Receive,
 };
 
+
+void sx1257_set_tx_freq(int32_t freq)
+{
+  uint32_t out_freq = (uint32_t)(((float)freq) / 68.66455f);
+  // HAL_Delay(5000);
+  // printf("Freq: 0x%08x\r\n", out_freq);
+
+  {
+    uint8_t data[] = {
+      SC18IS602B_SS0,
+      0x80 | 0x04,
+      (out_freq >> 16) & 0xff,
+    };
+    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+      data, sizeof(data), SC18IS602B_config.timeout);
+  }
+  {
+    uint8_t data[] = {
+      SC18IS602B_SS0,
+      0x80 | 0x05,
+      (out_freq >> 8) & 0xff,
+    };
+    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+      data, sizeof(data), SC18IS602B_config.timeout);
+  }
+  {
+    uint8_t data[] = {
+      SC18IS602B_SS0,
+      0x80 | 0x06,
+      out_freq & 0xff,
+    };
+    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+      data, sizeof(data), SC18IS602B_config.timeout);
+  }
+
+}
+
 #include "usbd_cdc_if.h"
 int _write(int fd, uint8_t *data, int count)
 {
@@ -153,41 +190,16 @@ int main(void)
   SC18IS602B_gpio_write(&SC18IS602B_config, 0);
   HAL_Delay(15); // Datasheet specifies to wait at least 10ms
 
-  // write RX frequency
-  {
-    uint8_t data[] = {
-      SC18IS602B_SS0,
-      0x80 | 0x04,
-      0xCB,
-    };
-    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
-      data, sizeof(data), SC18IS602B_config.timeout);
-  }
-  {
-    uint8_t data[] = {
-      SC18IS602B_SS0,
-      0x80 | 0x05,
-      0x55,
-    };
-    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
-      data, sizeof(data), SC18IS602B_config.timeout);
-  }
-  {
-    uint8_t data[] = {
-      SC18IS602B_SS0,
-      0x80 | 0x06,
-      0x55,
-    };
-    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
-      data, sizeof(data), SC18IS602B_config.timeout);
-  }
+  // write TX frequency
+  // sx1257_set_tx_freq(433000000);
+  sx1257_set_tx_freq(915000000);
 
 
   {
     uint8_t data[] = {
       SC18IS602B_SS0,
       0x80 | 0x00, // operating mode
-      0x08 | 0x04 | 0x02 | 0x01, // rx
+      0x08 | 0x04 | 0x02 | 0x01, // PA, TX, RX, IDLE
     };
     SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
       data, sizeof(data), SC18IS602B_config.timeout);
@@ -233,7 +245,7 @@ int main(void)
   /* USER CODE BEGIN 3 */
 
     count++;
-    printf("Loop %d\r\n", count);
+    // printf("Loop %d\r\n", count);
     
     HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
 
@@ -243,7 +255,21 @@ int main(void)
     // ret = SC18IS602B_gpio_read(0x0F, &value);
     // printf("  read=%d %d\r\n", ret, value);
 
-    HAL_Delay(250);
+    if (0)
+    {
+      uint8_t data[] = {
+        SC18IS602B_SS0,
+        0x80 | 0x00, // operating mode
+        (count & 1) ? (0x08 | 0x04 | 0x02 | 0x01) : 0x01,
+      };
+      SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+        data, sizeof(data), SC18IS602B_config.timeout);
+      HAL_Delay(1);
+    }
+
+    sx1257_set_tx_freq((count & 1) ? 915000000 : 915100000);
+
+    // HAL_Delay(1);
 
 
   }
