@@ -128,14 +128,9 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   int count = 0;
-  HAL_StatusTypeDef ret;
-
-  SC18IS602B_init(&SC18IS602B_config);
 
   // Set GPIO as output
-  SC18IS602B_gpio_enable(0x0F);
-
-
+  SC18IS602B_gpio_enable(&SC18IS602B_config, 0x0F);
 
   /* USER CODE END 2 */
 
@@ -152,7 +147,7 @@ int main(void)
     
     HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
 
-    SC18IS602B_gpio_write((count & 1) ? 0x0F : 0x00);
+    SC18IS602B_gpio_write(&SC18IS602B_config, (count & 1) ? 0x0F : 0x00);
 
     // read gpio:
     // uint8_t value = 0xFF;

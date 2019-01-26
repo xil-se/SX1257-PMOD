@@ -4,9 +4,6 @@
  * Konrad Beckmann <konrad.beckmann@gmail.com>
  * Public domain 2019-
  * 
- * One goal with this driver is to be platform independent,
- * portable and reusable. Feel free to use it anywhere.
- * 
  */
 
 #pragma once
@@ -26,8 +23,11 @@
 #define SC18IS602B_SS2            (0x04)
 #define SC18IS602B_SS3            (0x08)
 
-typedef int (*SC18IS602B_i2c_write)(void *handle, uint16_t address, const uint8_t *data, uint32_t count, uint32_t timeout);
-typedef int (*SC18IS602B_i2c_read)(void *handle, uint16_t address, uint8_t *data, uint32_t count, uint32_t timeout);
+typedef int (*SC18IS602B_i2c_write)(void *handle, uint16_t address,
+    const uint8_t *data, uint32_t count, uint32_t timeout);
+
+typedef int (*SC18IS602B_i2c_read)(void *handle, uint16_t address,
+    uint8_t *data, uint32_t count, uint32_t timeout);
 
 struct SC18IS602B_config {
     /* configurable address bits 0b000 - 0b111 */
@@ -43,10 +43,10 @@ struct SC18IS602B_config {
 };
 
 int SC18IS602B_init(const struct SC18IS602B_config *config);
-int SC18IS602B_write_bytes(uint8_t *data, uint32_t count);
-int SC18IS602B_write_cmd(uint8_t command);
-int SC18IS602B_write_cmd_val(uint8_t command, uint8_t value);
-int SC18IS602B_read_cmd_val(uint8_t command, uint8_t value, uint8_t *read_value);
+int SC18IS602B_write_bytes(const struct SC18IS602B_config *config, uint8_t *data, uint32_t count);
+int SC18IS602B_write_cmd(const struct SC18IS602B_config *config, uint8_t command);
+int SC18IS602B_write_cmd_val(const struct SC18IS602B_config *config, uint8_t command, uint8_t value);
+int SC18IS602B_read_cmd_val(const struct SC18IS602B_config *config, uint8_t command, uint8_t value, uint8_t *read_value);
 
 #define SC18IS602B_CONFIG_SPI     (0xF0)
 #define SC18IS602B_CLEAR_INT      (0xF1)
@@ -56,10 +56,23 @@ int SC18IS602B_read_cmd_val(uint8_t command, uint8_t value, uint8_t *read_value)
 #define SC18IS602B_GPIO_ENABLE    (0xF6)
 #define SC18IS602B_GPIO_CONFIG    (0xF7)
 
-#define SC18IS602B_spi_config(config)   SC18IS602B_write_cmd_val(SC18IS602B_SPI_CONFIG,  (config))
-#define SC18IS602B_int_clear()          SC18IS602B_write_cmd    (SC18IS602B_INT_CLEAR)
-#define SC18IS602B_idle()               SC18IS602B_write_cmd    (SC18IS602B_IDLE)
-#define SC18IS602B_gpio_write(pins)     SC18IS602B_write_cmd_val(SC18IS602B_GPIO_WRITE,  (pins))
-#define SC18IS602B_gpio_read(pins, val) SC18IS602B_read_cmd_val (SC18IS602B_GPIO_READ,   (pins), (val))
-#define SC18IS602B_gpio_enable(pins)    SC18IS602B_write_cmd_val(SC18IS602B_GPIO_ENABLE, (pins))
-#define SC18IS602B_gpio_config(config)  SC18IS602B_write_cmd_val(SC18IS602B_GPIO_CONFIG, (config))
+#define SC18IS602B_spi_config(config, data) \
+        SC18IS602B_write_cmd_val((config), SC18IS602B_SPI_CONFIG, (data))
+
+#define SC18IS602B_int_clear(config) \
+        SC18IS602B_write_cmd((config), SC18IS602B_INT_CLEAR)
+
+#define SC18IS602B_idle(config) \
+        SC18IS602B_write_cmd ((config), SC18IS602B_IDLE)
+
+#define SC18IS602B_gpio_write(config, pins) \
+        SC18IS602B_write_cmd_val((config), SC18IS602B_GPIO_WRITE, (pins))
+
+#define SC18IS602B_gpio_read(config, pins, val) \
+        SC18IS602B_read_cmd_val((config), SC18IS602B_GPIO_READ, (pins), (val))
+
+#define SC18IS602B_gpio_enable(config, pins) \
+        SC18IS602B_write_cmd_val((config), SC18IS602B_GPIO_ENABLE, (pins))
+
+#define SC18IS602B_gpio_config(config, data) \
+        SC18IS602B_write_cmd_val((config), SC18IS602B_GPIO_CONFIG, (data))
