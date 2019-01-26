@@ -85,6 +85,7 @@ Src/usb_device.c \
 Src/usbd_cdc_if.c \
 Src/usbd_conf.c \
 Src/usbd_desc.c \
+Src/sc18is602b.c \
 
 # ASM sources
 ASM_SOURCES =  \

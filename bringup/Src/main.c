@@ -75,42 +75,21 @@ static void MX_I2C1_Init(void);
 
 /* USER CODE BEGIN 0 */
 
+#include "sc18is602b.h"
+
+struct SC18IS602B_config SC18IS602B_config = {
+  .user_address = 0x00,
+  .handle = &hi2c1,
+  .timeout = 1000,
+  .i2c_write = (SC18IS602B_i2c_write) HAL_I2C_Master_Transmit,
+  .i2c_read = (SC18IS602B_i2c_read) HAL_I2C_Master_Receive,
+};
+
+#include "usbd_cdc_if.h"
 int _write(int fd, uint8_t *data, int count)
 {
   CDC_Transmit_FS(data, count);
   return count;
-}
-
-/////////////////////
-// SC18IS602B driver
-/////////////////////
-
-#define SC18IS602B_ADDR_USER      (0x00)
-#define SC18IS602B_ADDR           (0b0101000 | SC18IS602B_ADDR_USER)
-#define SC18IS602B_ADDR_W         ((SC18IS602B_ADDR << 1) | 0x01)
-#define SC18IS602B_ADDR_R         ((SC18IS602B_ADDR << 1) | 0x00)
-
-#define SC18IS602B_CONFIG_SPI     (0xF0)
-#define SC18IS602B_CLEAR_INT      (0xF1)
-#define SC18IS602B_IDLE           (0xF2)
-#define SC18IS602B_GPIO_WRITE     (0xF4)
-#define SC18IS602B_GPIO_READ      (0xF5)
-#define SC18IS602B_GPIO_ENABLE    (0xF6)
-#define SC18IS602B_GPIO_CONFIG    (0xF6)
-
-#define SC18IS602B_SS0            (0x01)
-#define SC18IS602B_SS1            (0x02)
-#define SC18IS602B_SS2            (0x04)
-#define SC18IS602B_SS3            (0x08)
-
-int SC18IS602B_enable_gpio(uint8_t pins)
-{
-  uint8_t data[] = {
-    0xF6,       // Enable gpio
-    pins & 0x0F,
-  };
-
-  return HAL_I2C_Master_Transmit(&hi2c1, SC18IS602B_ADDR_W, data, sizeof(data), 1000);
 }
 
 /* USER CODE END 0 */
@@ -151,7 +130,10 @@ int main(void)
   int count = 0;
   HAL_StatusTypeDef ret;
 
+  SC18IS602B_init(&SC18IS602B_config);
+
   // Set GPIO as output
+  SC18IS602B_gpio_enable(0x0F);
 
 
 
@@ -170,14 +152,12 @@ int main(void)
     
     HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
 
-    {
-      uint8_t data[] = {
-        0xF4, // Write gpio
-        (count & 1) ? 0x0F : 0x00, // toggle SS0, SS1, SS2, SS3
-      };
-      ret = HAL_I2C_Master_Transmit(&hi2c1, 0b01010001, data, sizeof(data), 1000);
-      printf("  ret=%d\r\n", ret);
-    }
+    SC18IS602B_gpio_write((count & 1) ? 0x0F : 0x00);
+
+    // read gpio:
+    // uint8_t value = 0xFF;
+    // ret = SC18IS602B_gpio_read(0x0F, &value);
+    // printf("  read=%d %d\r\n", ret, value);
 
     HAL_Delay(250);
 
