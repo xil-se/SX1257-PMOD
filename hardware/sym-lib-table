@@ -1,4 +1,5 @@
 (sym_lib_table
   (lib (name SX1257)(type Legacy)(uri ${KIPRJMOD}/SX1257.lib)(options "")(descr ""))
   (lib (name SC18IS602B)(type Legacy)(uri /home/konrad/dev/SX1257/hardware/SC18IS602B.lib)(options "")(descr ""))
+  (lib (name Si514)(type Legacy)(uri /home/konrad/dev/SX1257/hardware/Si514.lib)(options "")(descr ""))
 )

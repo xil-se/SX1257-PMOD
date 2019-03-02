@@ -1419,4 +1419,64 @@ $EndComp
 Wire Wire Line
 	10850 1000 10850 1100
 NoConn ~ 11550 1900
+$Comp
+L Si514:Si514 U?
+U 1 1 5C7B290D
+P 12400 3950
+F 0 "U?" H 12700 3450 50  0000 C CNN
+F 1 "Si514" H 12650 3550 50  0000 C CNN
+F 2 "" H 11950 4050 50  0001 C CNN
+F 3 "" H 11950 4050 50  0001 C CNN
+	1    12400 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C7B2B6A
+P 12400 4550
+F 0 "#PWR?" H 12400 4300 50  0001 C CNN
+F 1 "GND" H 12405 4377 50  0000 C CNN
+F 2 "" H 12400 4550 50  0001 C CNN
+F 3 "" H 12400 4550 50  0001 C CNN
+	1    12400 4550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	12400 4550 12400 4350
+Wire Wire Line
+	12400 3250 12400 3450
+$Comp
+L power:+1V8 #PWR?
+U 1 1 5C7EB9B9
+P 12400 3250
+F 0 "#PWR?" H 12400 3100 50  0001 C CNN
+F 1 "+1V8" H 12415 3423 50  0000 C CNN
+F 2 "" H 12400 3250 50  0001 C CNN
+F 3 "" H 12400 3250 50  0001 C CNN
+	1    12400 3250
+	1    0    0    -1  
+$EndComp
+Text Label 10850 3850 2    50   ~ 0
+I2C_SDA
+Text Label 10850 3950 2    50   ~ 0
+I2C_SCL
+Wire Wire Line
+	11750 3950 11950 3950
+Wire Wire Line
+	11950 3850 11750 3850
+Text Notes 9550 3650 0    50   ~ 0
+TODO: Level shifting!\nhttps://www.nxp.com/docs/en/application-note/AN10441.pdf
+NoConn ~ 12850 3850
+Text Label 13050 3950 0    50   ~ 0
+OSC_CLK+
+Text Label 13700 3950 0    50   ~ 0
+XTB
+Wire Wire Line
+	12850 3950 13700 3950
+Text Label 11750 3850 2    50   ~ 0
+I2C_1V8_SDA
+Text Label 11750 3950 2    50   ~ 0
+I2C_1V8_SCL
+Text Notes 12600 3200 0    50   ~ 0
+TODO: 3V3 -> 1V8 LDO
 $EndSCHEMATC
