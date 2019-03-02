@@ -114,20 +114,12 @@ Text Label 1000 1950 2    50   ~ 0
 PMOD_2
 Text Label 1000 2050 2    50   ~ 0
 PMOD_3
-Text Label 6550 2400 2    50   ~ 0
-PMOD_5
 Wire Wire Line
 	6750 2400 6550 2400
-Text Label 6550 2500 2    50   ~ 0
-PMOD_6
 Wire Wire Line
 	6750 2500 6550 2500
-Text Label 6550 2700 2    50   ~ 0
-PMOD_7
 Wire Wire Line
 	6750 2700 6550 2700
-Text Label 6550 2800 2    50   ~ 0
-PMOD_8
 Wire Wire Line
 	6750 2800 6550 2800
 Text Label 6550 2100 2    50   ~ 0
@@ -136,7 +128,7 @@ Text Label 6550 2200 2    50   ~ 0
 CLK_IN
 Text Label 1000 2150 2    50   ~ 0
 PMOD_4
-Text Label 1900 2050 0    50   ~ 0
+Text Label 1900 2550 0    50   ~ 0
 CLK_IN
 Wire Wire Line
 	6750 1800 6550 1800
@@ -277,50 +269,50 @@ Text Label 1000 1050 2    50   ~ 0
 PMOD_3V3
 Wire Wire Line
 	1000 1050 1200 1050
-Text Label 1000 2550 2    50   ~ 0
+Text Label 1000 3150 2    50   ~ 0
 PMOD_3V3
 $Comp
 L Device:Ferrite_Bead FB1
 U 1 1 5C30A1D4
-P 1450 2550
-F 0 "FB1" V 1550 2650 50  0000 C CNN
-F 1 "Ferrite_Bead" V 1250 2500 50  0001 C CNN
-F 2 "Inductor_SMD:L_0603_1608Metric" V 1380 2550 50  0001 C CNN
-F 3 "~" H 1450 2550 50  0001 C CNN
-	1    1450 2550
+P 1450 3150
+F 0 "FB1" V 1550 3250 50  0000 C CNN
+F 1 "Ferrite_Bead" V 1250 3100 50  0001 C CNN
+F 2 "Inductor_SMD:L_0603_1608Metric" V 1380 3150 50  0001 C CNN
+F 3 "~" H 1450 3150 50  0001 C CNN
+	1    1450 3150
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	1000 2550 1300 2550
+	1000 3150 1300 3150
 $Comp
 L power:+3V3 #PWR03
 U 1 1 5C30B964
-P 2050 2500
-F 0 "#PWR03" H 2050 2350 50  0001 C CNN
-F 1 "+3V3" H 1950 2650 50  0000 L CNN
-F 2 "" H 2050 2500 50  0001 C CNN
-F 3 "" H 2050 2500 50  0001 C CNN
-	1    2050 2500
+P 2050 3100
+F 0 "#PWR03" H 2050 2950 50  0001 C CNN
+F 1 "+3V3" H 1950 3250 50  0000 L CNN
+F 2 "" H 2050 3100 50  0001 C CNN
+F 3 "" H 2050 3100 50  0001 C CNN
+	1    2050 3100
 	-1   0    0    -1  
 $EndComp
 $Comp
 L power:PWR_FLAG #FLG01
 U 1 1 5C3103FC
-P 1900 2500
-F 0 "#FLG01" H 1900 2575 50  0001 C CNN
-F 1 "PWR_FLAG" H 1900 2674 50  0001 C CNN
-F 2 "" H 1900 2500 50  0001 C CNN
-F 3 "~" H 1900 2500 50  0001 C CNN
-	1    1900 2500
+P 1900 3100
+F 0 "#FLG01" H 1900 3175 50  0001 C CNN
+F 1 "PWR_FLAG" H 1900 3274 50  0001 C CNN
+F 2 "" H 1900 3100 50  0001 C CNN
+F 3 "~" H 1900 3100 50  0001 C CNN
+	1    1900 3100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1900 2500 1900 2550
-Connection ~ 1900 2550
+	1900 3100 1900 3150
+Connection ~ 1900 3150
 Wire Wire Line
-	2050 2550 2050 2500
+	2050 3150 2050 3100
 Wire Wire Line
-	1900 2550 2050 2550
+	1900 3150 2050 3150
 Text Label 8850 2100 0    50   ~ 0
 DIO0
 Text Label 8850 2200 0    50   ~ 0
@@ -521,12 +513,12 @@ $EndComp
 $Comp
 L power:PWR_FLAG #FLG02
 U 1 1 5C3953E6
-P 1900 2850
-F 0 "#FLG02" H 1900 2925 50  0001 C CNN
-F 1 "PWR_FLAG" H 1900 3024 50  0001 C CNN
-F 2 "" H 1900 2850 50  0001 C CNN
-F 3 "~" H 1900 2850 50  0001 C CNN
-	1    1900 2850
+P 1900 3450
+F 0 "#FLG02" H 1900 3525 50  0001 C CNN
+F 1 "PWR_FLAG" H 1900 3624 50  0001 C CNN
+F 2 "" H 1900 3450 50  0001 C CNN
+F 3 "~" H 1900 3450 50  0001 C CNN
+	1    1900 3450
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
@@ -883,26 +875,26 @@ Text Label 1900 1150 0    50   ~ 0
 PMOD_GND
 Wire Wire Line
 	1700 1150 1900 1150
-Text Label 1000 2750 2    50   ~ 0
+Text Label 1000 3350 2    50   ~ 0
 PMOD_GND
 $Comp
 L power:GND #PWR04
 U 1 1 5C3092FD
-P 2050 2850
-F 0 "#PWR04" H 2050 2600 50  0001 C CNN
-F 1 "GND" H 2055 2677 50  0000 C CNN
-F 2 "" H 2050 2850 50  0001 C CNN
-F 3 "" H 2050 2850 50  0001 C CNN
-	1    2050 2850
+P 2050 3450
+F 0 "#PWR04" H 2050 3200 50  0001 C CNN
+F 1 "GND" H 2055 3277 50  0000 C CNN
+F 2 "" H 2050 3450 50  0001 C CNN
+F 3 "" H 2050 3450 50  0001 C CNN
+	1    2050 3450
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2050 2750 2050 2850
+	2050 3350 2050 3450
 Wire Wire Line
-	1900 2850 1900 2750
-Connection ~ 1900 2750
+	1900 3450 1900 3350
+Connection ~ 1900 3350
 Wire Wire Line
-	1900 2750 2050 2750
+	1900 3350 2050 3350
 Wire Wire Line
 	6550 1600 6750 1600
 Wire Wire Line
@@ -925,11 +917,11 @@ Text Label 13250 2100 0    50   ~ 0
 SPI_MOSI
 Text Label 13250 1500 0    50   ~ 0
 SPI_NSS
-Text Label 1900 2150 0    50   ~ 0
+Text Label 1900 2650 0    50   ~ 0
 CLK_OUT
-Text Label 1900 1850 0    50   ~ 0
-I2C_CLK
-Text Label 1900 1950 0    50   ~ 0
+Text Label 1900 2350 0    50   ~ 0
+I2C_SCL
+Text Label 1900 2450 0    50   ~ 0
 I2C_SDA
 $Comp
 L SC18IS602B:SC18IS602B U2
@@ -1132,13 +1124,9 @@ $EndComp
 Wire Wire Line
 	11750 1900 11550 1900
 Text Label 11550 1800 2    50   ~ 0
-I2C_CLK
+I2C_SCL
 Text Label 11550 1700 2    50   ~ 0
 I2C_SDA
-Wire Wire Line
-	11550 1700 11750 1700
-Wire Wire Line
-	11550 1800 11750 1800
 $Comp
 L Device:R R9
 U 1 1 5C3C96EE
@@ -1170,7 +1158,7 @@ Wire Wire Line
 Text Label 11550 1900 2    50   ~ 0
 I2C_INT
 Text Notes 550  700  0    50   ~ 0
-Icebreaker compatibility:\nPMOD_4 connects to P1A10 which is a global/clock input pin (IOB_3B_G6)
+Icebreaker compatibility:\nPMOD_8 connects to P1A10 which is a global/clock input pin (IOB_3B_G6)
 Text Label 3550 2350 0    50   ~ 0
 DIO0
 Text Label 3550 2550 0    50   ~ 0
@@ -1308,9 +1296,9 @@ Wire Wire Line
 Wire Wire Line
 	1000 2150 1900 2150
 Wire Wire Line
-	1600 2550 1900 2550
+	1600 3150 1900 3150
 Wire Wire Line
-	1000 2750 1900 2750
+	1000 3350 1900 3350
 Wire Wire Line
 	13050 1500 13250 1500
 Wire Wire Line
@@ -1342,4 +1330,93 @@ F 6 "https://lcsc.com/product-detail/_RFsister-ANKX01-0093_C129604.html" H 4400 
 	1    4400 5300
 	1    0    0    -1  
 $EndComp
+Text Label 1000 2350 2    50   ~ 0
+PMOD_5
+Text Label 1000 2450 2    50   ~ 0
+PMOD_6
+Text Label 1000 2550 2    50   ~ 0
+PMOD_7
+Text Label 1000 2650 2    50   ~ 0
+PMOD_8
+Wire Wire Line
+	1000 2350 1900 2350
+Wire Wire Line
+	1000 2450 1900 2450
+Wire Wire Line
+	1000 2550 1900 2550
+Wire Wire Line
+	1000 2650 1900 2650
+Text Label 1900 1850 0    50   ~ 0
+I_IN
+Text Label 1900 1950 0    50   ~ 0
+Q_IN
+Text Label 1900 2050 0    50   ~ 0
+Q_OUT
+Text Label 1900 2150 0    50   ~ 0
+I_OUT
+Text Label 6550 2400 2    50   ~ 0
+I_IN
+Text Label 6550 2500 2    50   ~ 0
+Q_IN
+Text Label 6550 2700 2    50   ~ 0
+Q_OUT
+Text Label 6550 2800 2    50   ~ 0
+I_OUT
+$Comp
+L Device:R R2
+U 1 1 5C809682
+P 11150 1250
+F 0 "R2" H 11220 1296 50  0000 L CNN
+F 1 "2k2" H 11220 1205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 11080 1250 50  0001 C CNN
+F 3 "~" H 11150 1250 50  0001 C CNN
+	1    11150 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 5C8096F4
+P 10850 1250
+F 0 "R1" H 10920 1296 50  0000 L CNN
+F 1 "2k2" H 10920 1205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 10780 1250 50  0001 C CNN
+F 3 "~" H 10850 1250 50  0001 C CNN
+	1    10850 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11150 1400 11150 1700
+Wire Wire Line
+	11150 1700 11750 1700
+Wire Wire Line
+	10850 1800 10850 1400
+Wire Wire Line
+	10850 1800 11750 1800
+$Comp
+L power:+3V3 #PWR0101
+U 1 1 5C84AE58
+P 11150 1000
+F 0 "#PWR0101" H 11150 850 50  0001 C CNN
+F 1 "+3V3" H 11050 1150 50  0000 L CNN
+F 2 "" H 11150 1000 50  0001 C CNN
+F 3 "" H 11150 1000 50  0001 C CNN
+	1    11150 1000
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	11150 1000 11150 1100
+$Comp
+L power:+3V3 #PWR0102
+U 1 1 5C854300
+P 10850 1000
+F 0 "#PWR0102" H 10850 850 50  0001 C CNN
+F 1 "+3V3" H 10750 1150 50  0000 L CNN
+F 2 "" H 10850 1000 50  0001 C CNN
+F 3 "" H 10850 1000 50  0001 C CNN
+	1    10850 1000
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	10850 1000 10850 1100
+NoConn ~ 11550 1900
 $EndSCHEMATC
