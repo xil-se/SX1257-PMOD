@@ -1,13 +1,13 @@
 EESchema Schematic File Version 4
 LIBS:SX1257_pmod-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A3 16535 11693
 encoding utf-8
 Sheet 1 1
 Title "SX1257 PMOD"
-Date "2019-01-06"
-Rev "1.0"
+Date "2019-05-07"
+Rev "RevB"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -148,11 +148,11 @@ U 1 1 5C2BAF22
 P 7450 4500
 F 0 "Y1" H 7500 4700 50  0000 L CNN
 F 1 "36MHz 10ppm" H 7500 4800 50  0000 L CNN
-F 2 "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm" H 7450 4500 50  0001 C CNN
-F 3 "https://www.mouser.se/datasheet/2/3/abm8-16794.pdf" H 7450 4500 50  0001 C CNN
-F 4 "815-ABM8-36-10-1-U-T" H 7450 4500 50  0001 C CNN "Mouser"
-F 5 "https://www.mouser.se/ProductDetail/ABRACON/ABM8-36000MHZ-10-1-U-T?qs=sGAEpiMZZMsBj6bBr9Q9acVJ3l36SOAPXI0xqgGUahk%3d" H 7450 4500 50  0001 C CNN "MouserURL"
-F 6 "ABM8-36.000MHZ-10-1-U-T" H 7450 4500 50  0001 C CNN "MfrNo"
+F 2 "extra:Crystal_SMD_1612-4Pin_1.6x1.2mm" H 7450 4500 50  0001 C CNN
+F 3 "https://eu.mouser.com/datasheet/2/3/ABM12W-1107622.pdf" H 7450 4500 50  0001 C CNN
+F 4 "815-12W36-6B1UT" H 7450 4500 50  0001 C CNN "Mouser"
+F 5 "https://eu.mouser.com/ProductDetail/ABRACON/ABM12W-360000MHZ-6-B1U-T3?qs=%2Fha2pyFaduiSskzRnk5YszYp%2FYQbyNEaqk3XaFpHyq5uanwnbHUz6heQId99%2FXtKk4c7I0zJw7I%3D" H 7450 4500 50  0001 C CNN "MouserURL"
+F 6 "ABM12W-36.0000MHZ-6-B1U-T3" H 7450 4500 50  0001 C CNN "MfrNo"
 	1    7450 4500
 	1    0    0    -1  
 $EndComp
