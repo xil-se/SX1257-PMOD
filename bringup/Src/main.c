@@ -260,7 +260,7 @@ int main(void)
 
 #ifdef RX_TEST
   // write RX frequency
-  sx1257_set_rx_freq(868000000 - 10000);
+  sx1257_set_rx_freq(868000000 - 40000);
   HAL_Delay(100);
   sx1257_set_rx_ana_gain(0b001, 0b1111, 0b0);
   HAL_Delay(100);
@@ -334,13 +334,88 @@ int main(void)
     // printf("  read=%d %d\r\n", ret, value);
 
 #ifdef RX_TEST
-    static uint8_t rx_buf[1024*4];
-    for (int i = 0; i < sizeof(rx_buf); i++) {
-      register uint8_t reg = 0;
+    static uint16_t rx_buf[1024*4];
+    for (int i = 0; i < sizeof(rx_buf)/sizeof(rx_buf[0]); i++) {
+      register uint16_t reg = 0;
+#if 1
       for (int j = 0; j < 32; j++) {
-        // reg |= ((uint32_t)((GPIOB->IDR & GPIO_PIN_3) == 0)) << j;
-        reg += (uint32_t)((GPIOB->IDR & GPIO_PIN_3) == 0 ? 0:1);
+        reg += (GPIOB->IDR & GPIO_PIN_3);
       }
+#else
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      //32
+
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      reg += (GPIOB->IDR & GPIO_PIN_3);
+      //64
+#endif
       rx_buf[i] = reg;
       // rx_buf[i] = GPIOB->IDR & GPIO_PIN_3;
     }
@@ -350,8 +425,9 @@ int main(void)
 
 
 #ifdef TX_TEST
-    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
     static unsigned int x,y;
+#if 0
+    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
     // if (x == 0)
     //   sx1257_set_tx_freq(868000000 + (rand()) % 1000000);
 
@@ -367,6 +443,10 @@ int main(void)
     x = (x+1000) % 10000;
     // x = (x+y) % (10000);
     // y = ((y+1)*(3));
+#else
+    sx1257_set_tx_freq(868000000 + ((x++)*1000) % 10000);
+    HAL_Delay(100);
+#endif
 #endif //TX_TEST
 
   }
