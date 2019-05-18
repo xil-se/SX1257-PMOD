@@ -75,6 +75,9 @@ static void MX_I2C1_Init(void);
 
 /* USER CODE BEGIN 0 */
 
+// #define TX_TEST
+#define RX_TEST
+
 #include "sc18is602b.h"
 
 struct SC18IS602B_config SC18IS602B_config = {
@@ -95,27 +98,27 @@ void sx1257_set_tx_freq(int32_t freq)
   {
     uint8_t data[] = {
       SC18IS602B_SS0,
-      0x80 | 0x04,
+      0x80 | 0x04, // RegFrfTxMsb
       (out_freq >> 16) & 0xff,
     };
     SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
       data, sizeof(data), SC18IS602B_config.timeout);
   }
-  // HAL_Delay(1);
+  HAL_Delay(1);
   {
     uint8_t data[] = {
       SC18IS602B_SS0,
-      0x80 | 0x05,
+      0x80 | 0x05, // RegFrfTxxMid
       (out_freq >> 8) & 0xff,
     };
     SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
       data, sizeof(data), SC18IS602B_config.timeout);
   }
-  // HAL_Delay(1);
+  HAL_Delay(1);
   {
     uint8_t data[] = {
       SC18IS602B_SS0,
-      0x80 | 0x06,
+      0x80 | 0x06, // RegFrfTxLsb
       out_freq & 0xff,
     };
     SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
@@ -123,6 +126,60 @@ void sx1257_set_tx_freq(int32_t freq)
   }
   // HAL_Delay(1);
 
+}
+
+void sx1257_set_rx_freq(int32_t freq)
+{
+  uint32_t out_freq = (uint32_t)(((float)freq) / 68.66455f);
+  // HAL_Delay(5000);
+  // printf("Freq: 0x%08x\r\n", out_freq);
+
+  {
+    uint8_t data[] = {
+      SC18IS602B_SS0,
+      0x80 | 0x01, // RegFrfRxMsb
+      (out_freq >> 16) & 0xff,
+    };
+    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+      data, sizeof(data), SC18IS602B_config.timeout);
+  }
+  HAL_Delay(1);
+  {
+    uint8_t data[] = {
+      SC18IS602B_SS0,
+      0x80 | 0x02, // RegFrfRxMid
+      (out_freq >> 8) & 0xff,
+    };
+    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+      data, sizeof(data), SC18IS602B_config.timeout);
+  }
+  HAL_Delay(1);
+  {
+    uint8_t data[] = {
+      SC18IS602B_SS0,
+      0x80 | 0x03, // RegFrfRxLsb
+      out_freq & 0xff,
+    };
+    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+      data, sizeof(data), SC18IS602B_config.timeout);
+  }
+  // HAL_Delay(1);
+
+}
+
+void sx1257_set_rx_ana_gain(uint8_t RxLnaGain, uint8_t RxBasebandGain, uint8_t LnaZin)
+{
+  {
+    uint8_t data[] = {
+      SC18IS602B_SS0,
+      0x80 | 0x0C, // RegRxAnaGain
+      ((RxLnaGain & 0b111) << 5) |
+      ((RxBasebandGain & 0b1111) << 1) |
+      (LnaZin & 0b1)
+    };
+    SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
+      data, sizeof(data), SC18IS602B_config.timeout);
+  }
 }
 
 #include "usbd_cdc_if.h"
@@ -193,17 +250,34 @@ int main(void)
   SC18IS602B_gpio_write(&SC18IS602B_config, 0);
   HAL_Delay(100);
 
+#ifdef TX_TEST
   // write TX frequency
   // sx1257_set_tx_freq(433000000);
-  sx1257_set_tx_freq(915000000);
+  // sx1257_set_tx_freq(915000000);
+  sx1257_set_tx_freq(868000000);
   HAL_Delay(100);
+#endif
 
+#ifdef RX_TEST
+  // write RX frequency
+  sx1257_set_rx_freq(868000000 - 10000);
+  HAL_Delay(100);
+  sx1257_set_rx_ana_gain(0b001, 0b1111, 0b0);
+  HAL_Delay(100);
+#endif
 
   {
     uint8_t data[] = {
       SC18IS602B_SS0,
       0x80 | 0x00, // operating mode
-      0x08 | 0x04 | 0x02 | 0x01, // PA, TX, RX, IDLE
+      0x08 | // PA
+#ifdef TX_TEST
+      0x04 | // TX
+#endif
+#ifdef RX_TEST
+      0x02 | // RX
+#endif
+      0x01, // IDLE
     };
     SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
       data, sizeof(data), SC18IS602B_config.timeout);
@@ -249,10 +323,9 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
 
-    count++;
+    // count++;
     // printf("Loop %d\r\n", count);
     
-    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
 
 
     // read gpio:
@@ -260,27 +333,41 @@ int main(void)
     // ret = SC18IS602B_gpio_read(0x0F, &value);
     // printf("  read=%d %d\r\n", ret, value);
 
-    if (0)
-    {
-      uint8_t data[] = {
-        SC18IS602B_SS0,
-        0x80 | 0x00, // operating mode
-        (count & 1) ? (0x08 | 0x04 | 0x02 | 0x01) : 0x01,
-      };
-      SC18IS602B_config.i2c_write(SC18IS602B_config.handle, SC18IS602B_ADDR_W(&SC18IS602B_config),
-        data, sizeof(data), SC18IS602B_config.timeout);
-      HAL_Delay(1);
+#ifdef RX_TEST
+    static uint8_t rx_buf[1024*4];
+    for (int i = 0; i < sizeof(rx_buf); i++) {
+      register uint8_t reg = 0;
+      for (int j = 0; j < 32; j++) {
+        // reg |= ((uint32_t)((GPIOB->IDR & GPIO_PIN_3) == 0)) << j;
+        reg += (uint32_t)((GPIOB->IDR & GPIO_PIN_3) == 0 ? 0:1);
+      }
+      rx_buf[i] = reg;
+      // rx_buf[i] = GPIOB->IDR & GPIO_PIN_3;
     }
+    write(0, rx_buf, sizeof(rx_buf));
+    // printf("Yea\r\n");
+#endif
 
-    // sx1257_set_tx_freq((count & 2) ? 868000000 : 868400000);
-    sx1257_set_tx_freq(868000000 + (rand() % 40000000)-20000000);
 
-    // for (uint32_t x = 0; x < 10000; x++) {
-    //   __asm__("nop");
-    // }
+#ifdef TX_TEST
+    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+    static unsigned int x,y;
+    // if (x == 0)
+    //   sx1257_set_tx_freq(868000000 + (rand()) % 1000000);
 
-    // HAL_Delay(1);
-
+    for (int i = 0; i < 10; i++) {
+      // HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_4);
+      // HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_5);
+      GPIOB->ODR ^= GPIO_PIN_4;
+      // HAL_Delay(1);
+      for (uint32_t xx = 10000+x; xx > 0; xx--) {
+        __asm__("nop");
+      }
+    }
+    x = (x+1000) % 10000;
+    // x = (x+y) % (10000);
+    // y = ((y+1)*(3));
+#endif //TX_TEST
 
   }
   /* USER CODE END 3 */
@@ -401,13 +488,20 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_10, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_10, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PB0 PB1 PB2 PB10 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_10;
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_10;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH; //GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  // Configure input pin 39/PB3
+  GPIO_InitStruct.Pin = GPIO_PIN_3;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH; //GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
