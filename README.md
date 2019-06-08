@@ -30,9 +30,22 @@ RevB Pin-out:
 - 7: CLK_IN (32 or 36 MHz)
 - 8: CLK_OUT (36 MHz)
 
-Changes/TODO:
+## RevB errata
 
-- [ ] Fix crystal footprint
-- [x] Swap PMOD rows so CLK_OUT actually ties to P1A10/IOB_3B_G6 on the Icebreaker
-- [x] Add 2k2 pull-ups on I2C SCL and SDA.
-- [ ] Add optional SI514 I2C-programmable oscillator
+The pins VR_PA, VR_DIG, VR_ANA1 and VR_ANA2 should *not* be tied to VBAT/VCC, which they are. These are pins for decoupling for the internal voltage regulators, i.e. they should *only* be connected to single decoupling capacitors as stated in the datasheet.
+
+- VR_PA: 10nF
+- VR_DIG: 100nF
+- VR_ANA1: 100nF
+- VR_ANA2: 100nF
+
+RX performance is poor. Why? Maybe related to the above, or bad matching circuit?
+
+In the build of 10 units, 2 failed completely and 2 had very bad RX performance. Maybe related to the issue above.
+
+
+## Changes for RevC / TODO:
+
+- [ ] Fix SX1257 Vreg decoupling issue
+- [ ] Change to 0402 components
+- [ ] Add optional SI514 I2C-programmable oscillator (it's WIP on the branch si514)
