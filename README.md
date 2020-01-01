@@ -1,6 +1,6 @@
 # SX1257 PMOD
 
-This is a PMOD built around the SX1257 tranceiver. It uses an I2C-SPI bridge (SC18IS602B) since only 8 io pins are used.
+This is a PMOD built around the SX1257 transceiver. It uses an I2C-SPI bridge (SC18IS602B) since only 8 io pins are used.
 
 RevA Pin-out:
 - 1: I2C SCL
@@ -46,6 +46,6 @@ In the build of 10 units, 2 failed completely and 2 had very bad RX performance.
 
 ## Changes for RevC / TODO:
 
-- [ ] Fix SX1257 Vreg decoupling issue
-- [ ] Change to 0402 components
+- [x] Fix SX1257 Vreg decoupling issue. Done in #1 / 176024d
+- [x] Change to 0402 components. Done in #1 / 176024d
 - [ ] Add optional SI514 I2C-programmable oscillator (it's WIP on the branch si514)
