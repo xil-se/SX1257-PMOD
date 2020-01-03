@@ -1,4 +1,4 @@
-(kicad_pcb (version 20171130) (host pcbnew 5.1.5)
+(kicad_pcb (version 20171130) (host pcbnew 5.1.5-52549c5~84~ubuntu18.04.1)
 
   (general
     (thickness 1.6)
@@ -2145,7 +2145,7 @@
     (tags "test point SMD pad")
     (path /5C346277)
     (attr virtual)
-    (fp_text reference TP8 (at 0 2.05 180) (layer F.SilkS)
+    (fp_text reference TP8 (at -1.675 -0.85 270) (layer F.SilkS)
       (effects (font (size 0.8128 0.8128) (thickness 0.15)))
     )
     (fp_text value TestPoint (at 0 1.55 90) (layer F.Fab) hide
@@ -2160,13 +2160,13 @@
       (net 29 /GPIO2))
   )
 
-  (module Capacitor_SMD:C_0603_1608Metric (layer F.Cu) (tedit 5B301BBE) (tstamp 5C87E5B0)
+  (module Capacitor_SMD:C_0603_1608Metric (layer F.Cu) (tedit 5B301BBE) (tstamp 5E0FDD36)
     (at 120.65 32.6 90)
     (descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator")
     (tags capacitor)
     (path /5C4821AE)
     (attr smd)
-    (fp_text reference C17 (at -2.794 0 90) (layer F.SilkS) hide
+    (fp_text reference C17 (at -2.525 0 90) (layer F.SilkS)
       (effects (font (size 0.8128 0.8128) (thickness 0.15)))
     )
     (fp_text value 10u (at 3.012 -0.134 90) (layer F.Fab)
@@ -2351,7 +2351,7 @@
     (tags inductor)
     (path /5C30A1D4)
     (attr smd)
-    (fp_text reference FB1 (at -2.794 0 90) (layer F.SilkS) hide
+    (fp_text reference FB1 (at -2.45 0.025 90) (layer F.SilkS)
       (effects (font (size 0.8128 0.8128) (thickness 0.15)))
     )
     (fp_text value Ferrite_Bead (at 0 1.43 90) (layer F.Fab) hide
@@ -2599,7 +2599,7 @@
     (tags "SSOP 0.65")
     (path /5C309C14)
     (attr smd)
-    (fp_text reference U2 (at 0 -3.55 270) (layer F.SilkS)
+    (fp_text reference U2 (at 0 -3.48 270) (layer F.SilkS)
       (effects (font (size 0.8128 0.8128) (thickness 0.15)))
     )
     (fp_text value SC18IS602B (at 0 3.55 270) (layer F.Fab)
@@ -2727,7 +2727,7 @@
     (tags "test point SMD pad")
     (path /5C323ACA)
     (attr virtual)
-    (fp_text reference TP4 (at 0.01 1.42 270) (layer F.SilkS)
+    (fp_text reference TP4 (at 0.21 1.17 270) (layer F.SilkS)
       (effects (font (size 0.8128 0.8128) (thickness 0.15)))
     )
     (fp_text value TestPoint (at 0 1.55 270) (layer F.Fab) hide
